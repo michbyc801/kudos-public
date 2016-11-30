@@ -1,0 +1,8 @@
+---
+applications:
+- name: 0
+  host: 0
+  buildpack: staticfile_buildpack
+  instances: 1
+  memory: 256M
+  domain: us-east.modules.yaas.io

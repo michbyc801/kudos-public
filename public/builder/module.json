@@ -1,0 +1,12 @@
+{
+    "widgets": [
+        {
+            "id": "kudos.review",
+            "title": "Review Subscriptions",
+            "settings": {
+                "viewUrl": "index.html",
+                "endpointUrl": "https://kudos-mbpolsl.rhcloud.com"
+            }
+        }
+    ]
+}
