@@ -1,46 +1,82 @@
-<!DOCTYPE html>
- <html>
- <head lang="en">
-     <meta charset="UTF-8">
-     <!-- custom stylesheets -->
-     <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet"/>
-     <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
-     <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
-     <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
-     <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>
-     <script src="https://builder.yaas.io/public/js/builder.js"></script>
-     <script src="https://builder.yaas.io/public/js/builder_editors_v2.js"></script>
-     <script src="js/reviewController.js"></script>
-     <title>Wishlist</title>
- </head>
- <body>
- <div class="wrapper" ng-App="reviewModule">
-     <div class="container-fluid" style="margin-left:10px;">
-         <div class="row" ng-controller="reviewController">
-             <div class="page-header">
-                 <h1 id="header">Reviews ({{reviews.length}})</h1>
-             </div>
-             <div class="row">
-                 <div class="col-sm-12">
-                     <div class="panel panel-default">
-                         <!-- List group -->
-                         <ul class="list-group" >
-                             <li class="list-group-item" ng-repeat="review in reviews">
-                                 <span class="badge">{{review.createdAt | date : "mediumDate"}}</span>
-                                 <h2 class="ng-binding list-group-item-heading">
-                                     {{review.title}}
-                                     <small>(id : {{review.id}})</small>
-                                 </h2>
-                                 <h3>{{review.description}}</h3>
-                                 <small>(Items : {{items.length}})</small>
-                                 <p>Owner : {{review.owner}}</p>
-                             </li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- </body>
- </html>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Subscriptions review</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body ng-app="reviewModule" ng-cloak>
+
+    <header>
+        <div class="jumbotron text-center">
+            <h1>Subscriptions Review</h1>
+            <p>Here you can review and rate your subscription packages!</p>
+        </div>
+    </header>
+
+    <article ng-controller="reviewController" ng-init="reloadIFrame()">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 col-lg-3 col-xl-3" ng-repeat-start="item in relatedPackages track by $index">
+                        <div class="thumbnail">
+                            <img ng-src="{{item.img}}" style="width: calc(100% - 60px); margin-top: 30px; margin-bottom: 30px">
+                            <div class="panel panel-default">
+                                <div class="panel-heading text-center test">{{item.subName}}</div>
+                                <div class="panel-body">
+                                    <p class="short-desc">{{ item.subShortDesc }}</p>
+                                    <p class="kudos" data-toggle="collapse" data-target="#collapseWell{{item.userRating.subscriptionID}}" aria-expanded="false" aria-controls="collapseWell{{item.userRating.subscriptionID}}">Kudos <span class="badge">{{item.userRating.avgRate | number:1}}</span></p>
+                                    <div id="collapseWell{{item.userRating.subscriptionID}}" class="collapse">
+                                        <div class="well text-center">
+                                            <div class="row">
+                                                <div class="col-xs-2 col-sm-2" ng-class="{'col-xs-offset-1 col-sm-offset-0 col-lg-offset-1': $index==0}" ng-repeat="i in 5 | range">
+                                                    <span class="rating" ng-click="updateRate(item.userRating.subscriptionID, $index+1)" ng-class="{active: {{$index+1}}==item.userRating.rate}">{{$index+1}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="clearfix visible-sm" ng-if="($index+1) % 3 == 0"></div>
+                    <div class="clearfix visible-md" ng-if="($index+1) % 4 == 0"></div>
+                    <div class="clearfix visible-lg" ng-if="($index+1) % 4 == 0"></div>
+                    <div ng-repeat-end>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>
+    <script src="https://builder.yaas.io/public/js/builder.js"></script>
+    <script src="https://builder.yaas.io/public/js/builder_editors_v2.js"></script>
+	
+	<script type="text/javascript" src="js/reviewController.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.jumbotron {
+    background-color: #00bfff;
+    color: #fff;
+}
+
+.jumbotron p {
+    color: #ffe4c4;
+    border-top: 1px solid #33ccff;
+    border-bottom: 1px solid #33ccff;
+}
+
+.thumbnail {
+    /*background-color: #00bfff;
+    color: #fff;*/
+    -webkit-box-shadow: 0 7px 46px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 7px 46px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 7px 46px -9px rgba(0, 0, 0, 0.75);
+}
+
+.panel {
+    margin-bottom: 0;
+}
+
+.panel-body {
+    padding-bottom: 5px;
+}
+
+.short-desc {
+    text-align: justify;
+}
+
+.kudos {
+    cursor: pointer;
+    text-align: right;
+}
+
+.badge {
+    background-color: #00bfff;
+}
+
+.well {
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.rating {
+    background-color: white;
+    padding: 3px 7px;
+    border-radius: 10px;
+    margin: 0 -7px;
+    cursor: pointer;
+}
+
+.rating:hover {
+    background-color: #ff7f50;
+}
+
+.active {
+    background-color: #00bfff;
+    color: white;
+}

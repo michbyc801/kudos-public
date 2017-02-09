@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+ <html>
+ <head lang="en">
+     <meta charset="UTF-8">
+     <!-- custom stylesheets -->
+     <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet"/>
+     <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+     <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+     <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+     <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>
+     <script src="https://builder.yaas.io/public/js/builder.js"></script>
+     <script src="https://builder.yaas.io/public/js/builder_editors_v2.js"></script>
+     <script src="js/reviewController.js"></script>
+     <title>Wishlist</title>
+ </head>
+ <body>
+ <div class="wrapper" ng-App="reviewModule">
+     <div class="container-fluid" style="margin-left:10px;">
+         <div class="row" ng-controller="reviewController">
+             <div class="page-header">
+                 <h1 id="header">Reviews ({{reviews.length}})</h1>
+             </div>
+             <div class="row">
+                 <div class="col-sm-12">
+                     <div class="panel panel-default">
+                         <!-- List group -->
+                         <ul class="list-group" >
+                             <li class="list-group-item" ng-repeat="review in reviews">
+                                 <span class="badge">{{review.createdAt | date : "mediumDate"}}</span>
+                                 <h2 class="ng-binding list-group-item-heading">
+                                     {{review.title}}
+                                     <small>(id : {{review.id}})</small>
+                                 </h2>
+                                 <h3>{{review.description}}</h3>
+                                 <small>(Items : {{items.length}})</small>
+                                 <p>Owner : {{review.owner}}</p>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ </body>
+ </html>

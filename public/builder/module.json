@@ -2,7 +2,7 @@
     "widgets": [
         {
             "id": "kudos.review",
-            "title": "Review Subscriptions",
+            "title": "Subscriptions Review",
             "settings": {
                 "viewUrl": "index.html",
                 "endpointUrl": "https://kudos-mbpolsl.rhcloud.com"
